@@ -38,6 +38,7 @@ public class Scraper {
             }
             List<WebElement> resultRows = new ArrayList<>();
             resultRows = event.findElements(By.className("allRows"));
+            int filterRank=1;
             for (WebElement row : resultRows) {
                 try {
                     List<WebElement> cols = row.findElements(By.tagName("td"));
@@ -46,6 +47,8 @@ public class Scraper {
                     builder.append(cols.get(1).getText());
                     builder.append(cols.get(2).getText());
                     builder.append(eventT);
+                    builder.append(filterRank);
+                    filterRank++;
                     allResults.add(builder.toString());
 
                 } catch (Exception e) {
@@ -123,7 +126,7 @@ public class Scraper {
 //        filter10(driver);
 //        Thread.sleep(6000);
 
-        filterTeams(driver, new String[]{"Caltech","Chapman"});
+        filterTeams(driver, new String[]{"Caltech","Chapman", "Occidental"});
         Thread.sleep(6000);
 
         List<String> results= getPerformances(driver);

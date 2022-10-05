@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebc046a8-83e2-497b-a0ae-6cd8cd23809b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/webscraper/DopeSheet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/webscraper/Scraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webscraper/Scraper.java" afterDir="false" />
     </list>
