@@ -1,0 +1,11 @@
+Get http://localhost:8080/api/results/SCIAC HTTP/1.1
+
+###
+
+GET http://localhost:8080/api/resultsF/SCIAC HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "teams":["Caltech","Chapman"]
+}
