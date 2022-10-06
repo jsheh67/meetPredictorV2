@@ -25,6 +25,7 @@ public class RelayPerformance extends Performance{
                 " result="+super.getResult()+
                 " event="+super.getEvent()+
                 " rank="+super.getRank()+
+                " points="+super.getPoints()+
                 '}';
     }
 }

@@ -23,6 +23,7 @@ public class IndvPerformance  extends  Performance {
                 " result="+super.getResult()+
                 " event="+super.getEvent()+
                 " rank="+super.getRank()+
+                " points="+super.getPoints()+
                 '}';
     }
 }
