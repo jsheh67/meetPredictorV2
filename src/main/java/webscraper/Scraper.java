@@ -6,9 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import webscraper.models.Athlete;
-import webscraper.models.Performance;
-import webscraper.models.Team;
+import webscraper.models.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -66,7 +64,7 @@ public class Scraper {
                         Athlete a = new Athlete(name, year);
 
                         String time = cols.get(4).getText();
-                        Performance p = new Performance(eventT, a, time, filterRank);
+                        Performance p = new IndvPerformance(eventT, a, time, filterRank);
                         filterRank++;
                         allResults.add(p);
 
@@ -78,13 +76,24 @@ public class Scraper {
                             t = new Team(teamName, teamGender);
                             teams.add(t);
                         }
-
                         t.getPerformances().add(p);
-                    }else{
+
+                    }else{ //in case of relay
                         String teamName = cols.get(1).getText();
                         String time = cols.get(2).getText();
-                    }
+                        String athletes = cols.get(3).getText();
+                        Performance p = new RelayPerformance(eventT, time, filterRank,athletes);
+                        filterRank++;
 
+                        boolean teamGender = getGender(eventT);
+                        Team t = getTeam(teamName, teamGender);
+                        if (t == null) {
+                            t = new Team(teamName, teamGender);
+                            teams.add(t);
+                        }
+                        t.getPerformances().add(p);
+
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -170,6 +179,10 @@ public class Scraper {
 //        }
         for(Team t: teams){
             System.out.println(t);
+
+            for(Performance p: t.getPerformances()){
+                System.out.println(p);
+            }
         }
 
 

@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Team {
     private String teamName;
     private Boolean mOrF;
-    private List<Performance> performances= new ArrayList<>();
+    private List<Performance> Performances = new ArrayList<>();
 
     public Team(String teamName, Boolean mOrF) {
         this.teamName = teamName;
@@ -31,11 +31,11 @@ public class Team {
     }
 
     public List<Performance> getPerformances() {
-        return performances;
+        return Performances;
     }
 
-    public void setPerformances(List<Performance> performances) {
-        this.performances = performances;
+    public void setPerformances(List<Performance> Performances) {
+        this.Performances = Performances;
     }
 
     @Override

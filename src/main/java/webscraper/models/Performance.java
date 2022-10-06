@@ -1,27 +1,15 @@
 package webscraper.models;
 
-import java.time.LocalTime;
+import java.util.Objects;
 
 public class Performance {
-
     private String event;
-    private Athlete athlete;
     private String result;
-
     private int rank;
 
-    public Performance(String event, Athlete athlete, String result, int rank) {
+    public Performance(String event, String result, int rank) {
         this.event = event;
-        this.athlete = athlete;
         this.result = result;
-        this.rank=rank;
-    }
-
-    public int getRank() {
-        return rank;
-    }
-
-    public void setRank(int rank) {
         this.rank = rank;
     }
 
@@ -33,14 +21,6 @@ public class Performance {
         this.event = event;
     }
 
-    public Athlete getAthlete() {
-        return athlete;
-    }
-
-    public void setAthlete(Athlete athlete) {
-        this.athlete = athlete;
-    }
-
     public String getResult() {
         return result;
     }
@@ -49,13 +29,33 @@ public class Performance {
         this.result = result;
     }
 
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
     @Override
     public String toString() {
         return "Performance{" +
                 "event='" + event + '\'' +
-                ", athlete=" + athlete +
                 ", result='" + result + '\'' +
                 ", rank=" + rank +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Performance)) return false;
+        Performance that = (Performance) o;
+        return rank == that.rank && event.equals(that.event) && result.equals(that.result);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(event, result, rank);
     }
 }
