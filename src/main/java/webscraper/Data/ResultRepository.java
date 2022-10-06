@@ -51,16 +51,17 @@ public class ResultRepository {
         Thread.sleep(3000);
     }
 
-    public void filterTeams( String[] teams) throws InterruptedException {
+    public void filterTeams( TeamFilter teams) throws InterruptedException {
         WebElement selectTeams = driver.findElement(By.xpath("/html/body/div[3]/div/div/form/div[2]/div/div[2]/div/div[1]/div/div/button"));
         selectTeams.click();
         WebElement input = driver.findElement(By.xpath( "/html/body/div[3]/div/div/form/div[2]/div/div[2]/div/div[1]/div/div/div/div[1]/input"));
         input.click();
-        for (String team : teams) {
+        for (String team : teams.getTeams()) {
             input.sendKeys(team);
             input.sendKeys(Keys.RETURN);
             input.clear();
         }
+        Thread.sleep(3000);
     }
 
     //may add whole division functionality but for now by conference is good.

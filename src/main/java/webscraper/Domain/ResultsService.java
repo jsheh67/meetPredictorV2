@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import webscraper.Data.ResultRepository;
 import webscraper.Models.Performance;
 import webscraper.Models.Team;
+import webscraper.Models.TeamFilter;
 
 import java.util.List;
 import java.util.Set;
@@ -34,7 +35,7 @@ public class ResultsService {
         repository.searchConference(conf);
     }
 
-    public void filterTeams(String[] teams) throws InterruptedException {
+    public void filterTeams(TeamFilter teams) throws InterruptedException {
         repository.filterTeams(teams);
     }
 

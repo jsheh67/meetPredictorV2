@@ -3,6 +3,7 @@ package webscraper.Controller;
 import org.springframework.web.bind.annotation.*;
 import webscraper.Domain.ResultsService;
 import webscraper.Models.Performance;
+import webscraper.Models.TeamFilter;
 
 import java.util.List;
 
@@ -22,11 +23,13 @@ public class ResultController {
         service.setUpChrome();
         service.navToTFRRS();
         service.searchConference(conf);
-        return service.getPerformancesWPoints(true);
+        List<Performance> p =service.getPerformancesWPoints(true);
+        service.quit();
+        return p;
     }
 
-    @GetMapping("/results/{conf}")
-    public List<Performance> getConfResultsFilterTeams(@PathVariable String conf, @RequestBody String[] teams) throws InterruptedException {
+    @GetMapping("/resultsF/{conf}")
+    public List<Performance> getConfResultsFilterTeams(@PathVariable String conf, @RequestBody TeamFilter teams) throws InterruptedException {
         service.setUpChrome();
         service.navToTFRRS();
         service.searchConference(conf);
