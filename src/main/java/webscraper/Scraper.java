@@ -121,27 +121,17 @@ public class Scraper {
         Thread.sleep(1000);
         WebElement pageContent = driver.findElement(By.className("page-content"));
         WebElement panelBody= pageContent.findElement(By.className("panel-body"));
-
         WebElement children= panelBody.findElement(By.xpath("./child::*"));
-        System.out.println(children.getTagName());
-
         WebElement children2= children.findElement(By.xpath("./child::*"));
-
-        System.out.println(children2.getTagName());
 
         WebElement children3= children2.findElement(By.xpath("./child::*"));
 
-        System.out.println(children3.getTagName());
-
         List<WebElement> divisions = children3.findElements(By.xpath("./child::*"));
-        for (WebElement w:divisions){
-            System.out.println(w.getTagName()+w.getText());
-        }
+
         divisions.get(div).click();
         Thread.sleep(100);
         driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/div/div/div/div["+div+1+"]/turbo-frame/div/div/div/h3/a")).click();
         Thread.sleep(1000);
-
     }
 
     public static void searchConference( WebDriver driver, String conference) {

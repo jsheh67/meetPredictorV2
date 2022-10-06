@@ -6,11 +6,20 @@ public class Performance {
     private String event;
     private String result;
     private int rank;
+    private int points;
 
     public Performance(String event, String result, int rank) {
         this.event = event;
         this.result = result;
         this.rank = rank;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     public String getEvent() {
