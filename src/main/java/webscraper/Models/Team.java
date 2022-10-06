@@ -1,4 +1,4 @@
-package webscraper.models;
+package webscraper.Models;
 
 import java.util.ArrayList;
 import java.util.List;

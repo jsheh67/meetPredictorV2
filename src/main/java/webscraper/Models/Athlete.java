@@ -1,4 +1,4 @@
-package webscraper.models;
+package webscraper.Models;
 
 public class Athlete {
 

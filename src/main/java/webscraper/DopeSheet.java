@@ -12,9 +12,9 @@ public class DopeSheet {
         File sheet = new File("sheet.csv");
         try {
             if (sheet.createNewFile()) {
-                System.out.println("colors.txt created.");
+                System.out.println("sheet.csv created.");
             } else {
-                System.out.println("colors.txt already exists.");
+                System.out.println("sheet.csv already exists.");
             }
         } catch (IOException ex) {
             ex.printStackTrace();

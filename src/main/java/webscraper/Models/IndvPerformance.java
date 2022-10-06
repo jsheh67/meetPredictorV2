@@ -1,4 +1,4 @@
-package webscraper.models;
+package webscraper.Models;
 
 public class IndvPerformance  extends  Performance {
     private Athlete athlete;
@@ -19,7 +19,10 @@ public class IndvPerformance  extends  Performance {
     @Override
     public String toString() {
         return "IndvPerformance{" +
-                "athlete=" + athlete +
+                " athlete=" + athlete +
+                " result="+super.getResult()+
+                " event="+super.getEvent()+
+                " rank="+super.getRank()+
                 '}';
     }
 }

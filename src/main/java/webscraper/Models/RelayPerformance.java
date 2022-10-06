@@ -1,4 +1,4 @@
-package webscraper.models;
+package webscraper.Models;
 
 public class RelayPerformance extends Performance{
 
@@ -6,7 +6,7 @@ public class RelayPerformance extends Performance{
 
     public RelayPerformance(String event, String result, int rank, String athletes) {
         super(event, result, rank);
-        athletes = athletes;
+        this.athletes = athletes;
     }
 
     public String getAthletes() {
@@ -19,8 +19,12 @@ public class RelayPerformance extends Performance{
 
     @Override
     public String toString() {
+
         return "RelayPerformance{" +
                 "athletes='" + athletes + '\'' +
+                " result="+super.getResult()+
+                " event="+super.getEvent()+
+                " rank="+super.getRank()+
                 '}';
     }
 }
