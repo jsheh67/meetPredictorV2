@@ -7,6 +7,11 @@ public class Team {
     private Boolean mOrF;
     private List<Performance> performances;
 
+    public Team(String teamName, Boolean mOrF) {
+        this.teamName = teamName;
+        this.mOrF = mOrF;
+    }
+
     public String getTeamName() {
         return teamName;
     }

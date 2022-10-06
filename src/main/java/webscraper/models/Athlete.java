@@ -3,7 +3,12 @@ package webscraper.models;
 public class Athlete {
 
     private String name;
-    private int year;
+    private String year;
+
+    public Athlete(String name, String year) {
+        this.name = name;
+        this.year = year;
+    }
 
     public String getName() {
         return name;
@@ -13,11 +18,11 @@ public class Athlete {
         this.name = name;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 

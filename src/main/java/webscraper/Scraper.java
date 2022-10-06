@@ -6,9 +6,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import webscraper.models.Athlete;
+import webscraper.models.Performance;
+import webscraper.models.Team;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 
 public class Scraper {
@@ -20,9 +25,15 @@ public class Scraper {
         Thread.sleep(3000);
     }
 
-    public static List<String> getPerformances(WebDriver driver) {
+    public static boolean getGender(String s){
+        return(s.contains("men"));
+    }
 
-        List<String> allResults = new ArrayList<>();
+    public static List<Performance> getPerformances(WebDriver driver) {
+
+        Set<Team> teams = new HashSet<>();
+
+        List<Performance> allResults = new ArrayList<>();
 
         List<WebElement> allEvents = driver.findElements(By.className("col-lg-12"));
         for (WebElement event : allEvents) {
@@ -42,16 +53,22 @@ public class Scraper {
             for (WebElement row : resultRows) {
                 try {
                     List<WebElement> cols = row.findElements(By.tagName("td"));
-                    StringBuilder builder = new StringBuilder();
-                    builder.append(cols.get(0).getText());
-                    builder.append(cols.get(1).getText());
-                    builder.append(cols.get(2).getText());
-                    builder.append(eventT);
-                    builder.append(filterRank);
+                    String name= cols.get(1).getText();
+                    String year = cols.get(2).getText();
+                    Athlete a = new Athlete(name, year);
+
+                    String time= cols.get(4).getText();
+                    Performance p = new Performance(eventT, a, time,filterRank);
                     filterRank++;
-                    allResults.add(builder.toString());
+                    allResults.add(p);
+
+                    Team t= new Team(cols.get(3).getText(), getGender(eventT));
+                    teams.add(t);
+
+
 
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }
@@ -129,9 +146,9 @@ public class Scraper {
         filterTeams(driver, new String[]{"Caltech","Chapman", "Occidental"});
         Thread.sleep(6000);
 
-        List<String> results= getPerformances(driver);
-        for(String s: results){
-            System.out.println(s);
+        List<Performance> results= getPerformances(driver);
+        for(Performance p: results){
+            System.out.println(p.toString());
         }
 
 

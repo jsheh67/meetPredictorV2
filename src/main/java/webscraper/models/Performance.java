@@ -6,7 +6,24 @@ public class Performance {
 
     private String event;
     private Athlete athlete;
-    private LocalTime time;
+    private String result;
+
+    private int rank;
+
+    public Performance(String event, Athlete athlete, String result, int rank) {
+        this.event = event;
+        this.athlete = athlete;
+        this.result = result;
+        this.rank=rank;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
 
     public String getEvent() {
         return event;
@@ -24,12 +41,12 @@ public class Performance {
         this.athlete = athlete;
     }
 
-    public LocalTime getTime() {
-        return time;
+    public String getResult() {
+        return result;
     }
 
-    public void setTime(LocalTime time) {
-        this.time = time;
+    public void setResult(String result) {
+        this.result = result;
     }
 
     @Override
@@ -37,7 +54,8 @@ public class Performance {
         return "Performance{" +
                 "event='" + event + '\'' +
                 ", athlete=" + athlete +
-                ", time=" + time +
+                ", result='" + result + '\'' +
+                ", rank=" + rank +
                 '}';
     }
 }

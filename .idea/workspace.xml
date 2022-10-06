@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebc046a8-83e2-497b-a0ae-6cd8cd23809b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/webscraper/models/Athlete.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/webscraper/models/Performance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/webscraper/models/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webscraper/Scraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webscraper/Scraper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webscraper/models/Athlete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webscraper/models/Athlete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webscraper/models/Performance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webscraper/models/Performance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webscraper/models/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webscraper/models/Team.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
