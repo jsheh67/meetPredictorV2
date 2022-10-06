@@ -18,6 +18,8 @@ import java.util.logging.Level;
 
 public class Scraper {
 
+    public static Set<Team> teams = new HashSet<>();
+
     public static void filter10(WebDriver driver) throws InterruptedException {
         Select numResults = new Select(driver.findElement(By.name("limit")));
         numResults.selectByValue("10");
@@ -29,12 +31,17 @@ public class Scraper {
         return(s.contains("men"));
     }
 
+    public static Team getTeam(String name, boolean gender){
+       for (Team t: teams){
+           if (t.equals(new Team(name,gender))){
+               return t;
+           }
+       }
+       return null;
+    }
+
     public static List<Performance> getPerformances(WebDriver driver) {
-
-        Set<Team> teams = new HashSet<>();
-
         List<Performance> allResults = new ArrayList<>();
-
         List<WebElement> allEvents = driver.findElements(By.className("col-lg-12"));
         for (WebElement event : allEvents) {
 //            String eventName = event.findElement(By.className("font-weight-500")).getText();
@@ -53,19 +60,30 @@ public class Scraper {
             for (WebElement row : resultRows) {
                 try {
                     List<WebElement> cols = row.findElements(By.tagName("td"));
-                    String name= cols.get(1).getText();
-                    String year = cols.get(2).getText();
-                    Athlete a = new Athlete(name, year);
+                    if(!eventT.contains("Relay")) {
+                        String name = cols.get(1).getText();
+                        String year = cols.get(2).getText();
+                        Athlete a = new Athlete(name, year);
 
-                    String time= cols.get(4).getText();
-                    Performance p = new Performance(eventT, a, time,filterRank);
-                    filterRank++;
-                    allResults.add(p);
+                        String time = cols.get(4).getText();
+                        Performance p = new Performance(eventT, a, time, filterRank);
+                        filterRank++;
+                        allResults.add(p);
 
-                    Team t= new Team(cols.get(3).getText(), getGender(eventT));
-                    teams.add(t);
+                        String teamName = cols.get(3).getText();
+                        boolean teamGender = getGender(eventT);
 
+                        Team t = getTeam(teamName, teamGender);
+                        if (t == null) {
+                            t = new Team(teamName, teamGender);
+                            teams.add(t);
+                        }
 
+                        t.getPerformances().add(p);
+                    }else{
+                        String teamName = cols.get(1).getText();
+                        String time = cols.get(2).getText();
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -147,8 +165,11 @@ public class Scraper {
         Thread.sleep(6000);
 
         List<Performance> results= getPerformances(driver);
-        for(Performance p: results){
-            System.out.println(p.toString());
+//        for(Performance p: results){
+//            System.out.println(p.toString());
+//        }
+        for(Team t: teams){
+            System.out.println(t);
         }
 
 

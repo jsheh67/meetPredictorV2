@@ -1,11 +1,13 @@
 package webscraper.models;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Team {
     private String teamName;
     private Boolean mOrF;
-    private List<Performance> performances;
+    private List<Performance> performances= new ArrayList<>();
 
     public Team(String teamName, Boolean mOrF) {
         this.teamName = teamName;
@@ -42,5 +44,18 @@ public class Team {
                 "teamName='" + teamName + '\'' +
                 ", mOrF=" + mOrF +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Team)) return false;
+        Team team = (Team) o;
+        return teamName.equals(team.teamName) && mOrF.equals(team.mOrF);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(teamName, mOrF);
     }
 }
