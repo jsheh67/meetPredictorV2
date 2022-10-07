@@ -43,6 +43,14 @@ public class ResultsService {
         repository.selectDivision(n);
     }
 
+    public int getNumTeams(){
+        return repository.getNumTeams();
+    }
+
+    public List<Team> getAllTeams(){
+        return repository.getAllTeams();
+    }
+
     public List<Performance> findPerformances(){
          return repository.findPerformances();
     }
