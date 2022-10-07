@@ -64,6 +64,27 @@ public class ResultRepository {
         Thread.sleep(3000);
     }
 
+    public int getNumTeams(){
+        driver.findElement(By.xpath("/html/body/div[3]/div/div/form/div[2]/div/div[2]/div/div[1]/div/div/button")).click();
+        String options=driver.findElement(By.cssSelector(".dropdown-menu.inner.show")).getText();
+//        System.out.println(options);
+        String[] allTeamsArray = options.split("\n");
+        return allTeamsArray.length;
+    }
+
+    public List<Team> getAllTeams(){
+        List<Team> allTeams= new ArrayList<>();
+        driver.findElement(By.xpath("/html/body/div[3]/div/div/form/div[2]/div/div[2]/div/div[1]/div/div/button")).click();
+        String options=driver.findElement(By.cssSelector(".dropdown-menu.inner.show")).getText();
+//        System.out.println(options);
+        String[] allTeamsArray = options.split("\n");
+        for(String s: allTeamsArray){
+            allTeams.add(new Team(s,true));
+            allTeams.add(new Team(s,false));
+        }
+        return allTeams;
+    }
+
     //may add whole division functionality but for now by conference is good.
     public void selectDivision(int div) throws InterruptedException {
         driver.findElement(By.linkText("PERFORMANCE LISTS")).click();
