@@ -170,6 +170,71 @@ public class ResultRepository {
     }
 
 
+    public Meet getMeet(){
+        Meet meet = new Meet();
+        List<Team> teams = new ArrayList<>();
+
+        List<WebElement> allEvents = driver.findElements(By.className("col-lg-12"));
+        for (WebElement event : allEvents) {
+//            String eventName = event.findElement(By.className("font-weight-500")).getText();
+            String[] eventTitle = event.getText().split("\n");
+            String eventName = eventTitle[0];
+            int endIndex = eventName.indexOf(")");
+            String eventT;
+            if (endIndex != -1) {
+                eventT = eventName.substring(0, endIndex + 1);
+            } else {
+                eventT = eventName;
+            }
+            List<WebElement> resultRows = new ArrayList<>();
+            resultRows = event.findElements(By.className("allRows"));
+            int filterRank=1;
+            for (WebElement row : resultRows) {
+                try {
+                    List<WebElement> cols = row.findElements(By.tagName("td"));
+                    if(!eventT.contains("Relay")) {
+                        String name = cols.get(1).getText();
+                        String year = cols.get(2).getText();
+                        Athlete a = new Athlete(name, year);
+
+                        String time = cols.get(4).getText();
+                        Performance p = new IndvPerformance(eventT, a, time, filterRank);
+                        filterRank++;
+                        String teamName = cols.get(3).getText();
+                        boolean teamGender = getGender(eventT);
+
+                        Team t = findTeamFromList(teamName, teamGender,teams);
+                        if (t == null) {
+                            t = new Team(teamName, teamGender);
+                            teams.add(t);
+                        }
+                        t.getPerformances().add(p);
+
+                    }else{ //in case of relay
+                        String teamName = cols.get(1).getText();
+                        String time = cols.get(2).getText();
+                        String athletes = cols.get(3).getText();
+                        Performance p = new RelayPerformance(eventT, time, filterRank,athletes);
+                        filterRank++;
+
+                        boolean teamGender = getGender(eventT);
+                        Team t = findTeamFromList(teamName, teamGender, teams);
+                        if (t == null) {
+                            t = new Team(teamName, teamGender);
+                            teams.add(t);
+                        }
+                        t.getPerformances().add(p);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        meet.setTeams(teams);
+        return meet;
+    }
+
+
 
     //-------Helper Methods----------------
     private boolean getGender(String s){
@@ -185,12 +250,12 @@ public class ResultRepository {
         return null;
     }
 
-
-
-
-
-
-
-
-
+    private Team findTeamFromList(String name, boolean gender, List<Team> teams){
+        for (Team t: teams){
+            if (t.equals(new Team(name,gender))){
+                return t;
+            }
+        }
+        return null;
+    }
 }

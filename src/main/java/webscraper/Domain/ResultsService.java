@@ -2,6 +2,7 @@ package webscraper.Domain;
 
 import org.springframework.stereotype.Service;
 import webscraper.Data.ResultRepository;
+import webscraper.Models.Meet;
 import webscraper.Models.Performance;
 import webscraper.Models.Team;
 import webscraper.Models.TeamFilter;
@@ -60,7 +61,20 @@ public class ResultsService {
         return addPoints(isDuel,performances);
     }
 
-    public List<Performance> addPoints(boolean isDuel, List<Performance> performances){
+    public Meet getMeet(){
+        return repository.getMeet();
+    }
+
+    public Meet getMeetWPoints(){
+      Meet meet = getMeet();
+      for(Team t: meet.getTeams()){
+          addPoints(meet.isDuel(),t.getPerformances());
+      }
+      return meet;
+    }
+
+
+    private List<Performance> addPoints(boolean isDuel, List<Performance> performances){
         for(Performance p: performances){
             if(isDuel){
                 switch(p.getRank()){
