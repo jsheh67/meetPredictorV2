@@ -6,12 +6,12 @@ import java.util.Objects;
 
 public class Team {
     private String teamName;
-    private Boolean mOrF;
+    private Boolean womens;
     private List<Performance> Performances = new ArrayList<>();
 
     public Team(String teamName, Boolean mOrF) {
         this.teamName = teamName;
-        this.mOrF = mOrF;
+        this.womens = mOrF;
     }
 
     public String getTeamName() {
@@ -22,12 +22,12 @@ public class Team {
         this.teamName = teamName;
     }
 
-    public Boolean getmOrF() {
-        return mOrF;
+    public Boolean getWomens() {
+        return womens;
     }
 
-    public void setmOrF(Boolean mOrF) {
-        this.mOrF = mOrF;
+    public void setWomens(Boolean womens) {
+        this.womens = womens;
     }
 
     public List<Performance> getPerformances() {
@@ -42,7 +42,7 @@ public class Team {
     public String toString() {
         return "Team{" +
                 "teamName='" + teamName + '\'' +
-                ", mOrF=" + mOrF +
+                ", mOrF=" + womens +
                 '}';
     }
 
@@ -51,11 +51,11 @@ public class Team {
         if (this == o) return true;
         if (!(o instanceof Team)) return false;
         Team team = (Team) o;
-        return teamName.equals(team.teamName) && mOrF.equals(team.mOrF);
+        return teamName.equals(team.teamName) && womens.equals(team.womens);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(teamName, mOrF);
+        return Objects.hash(teamName, womens);
     }
 }
