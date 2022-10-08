@@ -1111,26 +1111,53 @@ function ResultTable(){
         "duel": false
       };
 
+    const numTeams=meet.teams.length;
+    console.log(numTeams);
     
     const teamHeaderFactory=()=>{
-        return( meet.teams.map(t=>{
+        return(meet.teams.map(t=>{
             return (
                 <th className="bg-blue-100 border text-left px-8 py-4"> {t.teamName}{t.mOrF ? " (women)":" (men)" }</th>
             )
         }))
     }
 
+    const teamResults=(num)=>{
+        return(meet.teams[num].performances.map(p=>{
+            return(
+                <tr>
+                    <th className ="border-slate-500">{p.event}{p.result}{p.rank}{null==p.athlete ? p.athletes: p.athlete.name}</th>
+                </tr>
+            )
+        }))
+    }
+
+
+    const hundredPerformances=()=>{
+        return(meet.teams.map(t=>{
+            return (t.performances.map(p=>{
+               
+                    return(
+                        <tr>
+                            <th className ="border-slate-500">{p.event}{p.result}{p.rank}{null==p.athlete ? p.athletes: p.athlete.name}</th>
+                        </tr>
+                    )}))
+        }))
+    }
+
     return(
-        <table className="shadow-lg bg-white">
+        <table className="shadow-lg bg-white border border-slate-500">
             <tr>
                 <th className="bg-blue-100 border text-left px-8 py-4">Event</th>
                 {teamHeaderFactory()}
             </tr>
             <tr>
-                <td>100m</td>
+                <td rowSpan="3">100m</td>
+                {hundredPerformances()}
             </tr>
+            
             <tr>
-                <td>200mm</td>
+                <td rowSpan="3">200m</td>
             </tr>
         </table>
     )
