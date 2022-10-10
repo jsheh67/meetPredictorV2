@@ -7,7 +7,19 @@ import java.util.Objects;
 public class Team {
     private String teamName;
     private Boolean womens;
+
     private List<Performance> Performances = new ArrayList<>();
+
+    private TeamScores scores;
+
+    public TeamScores getScores() {
+        for(Performance p: Performances){
+            int points=p.getPoints();
+            String eventName=p.getEvent();
+            scores.getScoreMap().put(eventName, (int)scores.getScoreMap().get(eventName) + points);
+        };
+        return scores;
+    }
 
     public Team(String teamName, Boolean mOrF) {
         this.teamName = teamName;
