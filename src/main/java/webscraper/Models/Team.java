@@ -1,30 +1,61 @@
 package webscraper.Models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Team {
     private String teamName;
     private Boolean womens;
+    private int totalPoints=0;
+
 
     private List<Performance> Performances = new ArrayList<>();
 
-    private TeamScores scores;
+    private HashMap scoreMap= new HashMap<>();
 
-    public TeamScores getScores() {
-        for(Performance p: Performances){
-            int points=p.getPoints();
-            String eventName=p.getEvent();
-            scores.getScoreMap().put(eventName, (int)scores.getScoreMap().get(eventName) + points);
-        };
-        return scores;
+    public int getTotalPoints() {
+        return totalPoints;
     }
+
+    public void setTotalPoints(int totalPoints) {
+        this.totalPoints = totalPoints;
+    }
+
+    public HashMap getScoreMap() {
+        return scoreMap;
+    }
+
+    public void setScoreMap(HashMap scoreMap) {
+        this.scoreMap = scoreMap;
+    }
+
+    //
+//
+//    public HashMap getScoreMap() {
+//        List<Performance> ps = getPerformances();
+//        for(Performance p: ps){
+//            int score=0;
+//            if(scoreMap.get(p.getEvent())!=null){
+//                score=(int)scoreMap.get(p.getEvent());
+//                score+=p.getPoints();
+//            }
+//            scoreMap.put(p.getEvent(),score );
+//        }
+//        return scoreMap;
+//    }
+
 
     public Team(String teamName, Boolean mOrF) {
         this.teamName = teamName;
         this.womens = mOrF;
     }
+
+//    public int getTotal() {
+//        return (int) scoreMap.values().stream().collect(Collectors.summingInt(Integer::intValue));
+//    }
 
     public String getTeamName() {
         return teamName;

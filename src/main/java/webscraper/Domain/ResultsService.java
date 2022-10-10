@@ -52,11 +52,11 @@ public class ResultsService {
         return repository.getAllTeams();
     }
 
-    public List<Performance> findPerformances(){
+    public List<Performance> findPerformances()  {
          return repository.findPerformances();
     }
 
-    public List<Performance> getPerformancesWPoints(boolean isDuel){
+    public List<Performance> getPerformancesWPoints(boolean isDuel) {
         List<Performance> performances = findPerformances();
         return addPoints(isDuel,performances);
     }
@@ -71,6 +71,23 @@ public class ResultsService {
           addPoints(meet.isDuel(),t.getPerformances());
       }
       return meet;
+    }
+
+    public Meet getMeetWEventScores(){
+        Meet meet =getMeet();
+        for(Team t: meet.getTeams()){
+            addPoints(meet.isDuel(), t.getPerformances());
+            for(Performance p: t.getPerformances()){
+                Integer score;
+                if(t.getScoreMap().get(p.getEvent())!=null){
+                    score= (int)(t.getScoreMap().get(p.getEvent())) + p.getPoints();
+                }else {
+                    score = p.getPoints();
+                }
+                t.getScoreMap().put(p.getEvent(),score);
+            }
+        }
+        return meet;
     }
 
 

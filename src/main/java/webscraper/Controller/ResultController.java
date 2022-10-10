@@ -31,7 +31,8 @@ public class ResultController {
     public Meet getMeetResults(@PathVariable String conf,  @RequestBody TeamFilter teams) throws InterruptedException {
         startAndSearch(conf);
         service.filterTeams(teams);
-        Meet m = service.getMeetWPoints();
+//        Meet m = service.getMeetWPoints();
+        Meet m= service.getMeetWEventScores();
         service.quit();
         return m;
     }
@@ -45,7 +46,7 @@ public class ResultController {
     }
 
     @GetMapping("/results/{conf}")
-    public List<Performance> getConfResults(@PathVariable String conf){
+    public List<Performance> getConfResults(@PathVariable String conf) throws InterruptedException {
         startAndSearch(conf);
         List<Performance> p =service.getPerformancesWPoints(true);
         service.quit();

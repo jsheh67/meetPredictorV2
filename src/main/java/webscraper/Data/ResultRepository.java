@@ -105,7 +105,8 @@ public class ResultRepository {
         Thread.sleep(1000);
     }
 
-    public List<Performance> findPerformances(){
+    public List<Performance> findPerformances() {
+//        Thread.sleep(6000);
         List<Performance> allResults = new ArrayList<>();
         List<WebElement> allEvents = driver.findElements(By.className("col-lg-12"));
         for (WebElement event : allEvents) {
