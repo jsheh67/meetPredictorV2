@@ -7,7 +7,6 @@ function ResultTable(){
         {
           "teamName": "Chapman",
           "womens": false,
-          "totalPoints": 0,
           "scoreMap": {
             "400 Meters (Men)": 18,
             "Pole Vault (Men)": 29,
@@ -18,15 +17,16 @@ function ResultTable(){
             "Triple Jump (Men)": 24,
             "High Jump (Men)": 18,
             "Long Jump (Men)": 24,
-            "110 Hurdles (Men)": 24,
             "400 Hurdles (Men)": 9,
             "Discus (Men)": 8,
             "4 x 100 Relay (Men)": 10,
             "Hammer (Men)": 21,
             "3000 Steeplechase (Men)": 18,
             "200 Meters (Men)": 18,
-            "4 x 400 Relay (Men)": 10
+            "4 x 400 Relay (Men)": 10,
+            "High Hurdles (Men)": 24
           },
+          "totalPoints": 292,
           "performances": [
             {
               "event": "100 Meters (Men)",
@@ -89,7 +89,7 @@ function ResultTable(){
               }
             },
             {
-              "event": "110 Hurdles (Men)",
+              "event": "High Hurdles (Men)",
               "result": "15.59",
               "rank": 1,
               "points": 10,
@@ -99,7 +99,7 @@ function ResultTable(){
               }
             },
             {
-              "event": "110 Hurdles (Men)",
+              "event": "High Hurdles (Men)",
               "result": "16.96",
               "rank": 2,
               "points": 8,
@@ -109,7 +109,7 @@ function ResultTable(){
               }
             },
             {
-              "event": "110 Hurdles (Men)",
+              "event": "High Hurdles (Men)",
               "result": "18.71",
               "rank": 3,
               "points": 6,
@@ -397,14 +397,13 @@ function ResultTable(){
         {
           "teamName": "Chapman",
           "womens": true,
-          "totalPoints": 0,
           "scoreMap": {
             "Triple Jump (Women)": 18,
             "800 Meters (Women)": 19,
             "Shot Put (Women)": 8,
             "Javelin (Women)": 18,
             "High Jump (Women)": 24,
-            "100 Hurdles (Women)": 24,
+            "High Hurdles (Women)": 24,
             "100 Meters (Women)": 29,
             "Long Jump (Women)": 24,
             "400 Meters (Women)": 27,
@@ -416,6 +415,7 @@ function ResultTable(){
             "200 Meters (Women)": 28,
             "1500 Meters (Women)": 14
           },
+          "totalPoints": 297,
           "performances": [
             {
               "event": "100 Meters (Women)",
@@ -598,7 +598,7 @@ function ResultTable(){
               }
             },
             {
-              "event": "100 Hurdles (Women)",
+              "event": "High Hurdles (Women)",
               "result": "16.19",
               "rank": 1,
               "points": 10,
@@ -608,7 +608,7 @@ function ResultTable(){
               }
             },
             {
-              "event": "100 Hurdles (Women)",
+              "event": "High Hurdles (Women)",
               "result": "16.71",
               "rank": 2,
               "points": 8,
@@ -618,7 +618,7 @@ function ResultTable(){
               }
             },
             {
-              "event": "100 Hurdles (Women)",
+              "event": "High Hurdles (Women)",
               "result": "18.24",
               "rank": 3,
               "points": 6,
@@ -806,7 +806,6 @@ function ResultTable(){
         {
           "teamName": "Caltech",
           "womens": true,
-          "totalPoints": 0,
           "scoreMap": {
             "400 Meters (Women)": 11,
             "Pole Vault (Women)": 6,
@@ -821,6 +820,7 @@ function ResultTable(){
             "200 Meters (Women)": 5,
             "1500 Meters (Women)": 10
           },
+          "totalPoints": 155,
           "performances": [
             {
               "event": "200 Meters (Women)",
@@ -1021,7 +1021,6 @@ function ResultTable(){
         {
           "teamName": "Caltech",
           "womens": false,
-          "totalPoints": 0,
           "scoreMap": {
             "400 Meters (Men)": 11,
             "10,000 Meters (Men)": 10,
@@ -1032,6 +1031,7 @@ function ResultTable(){
             "4 x 400 Relay (Men)": 8,
             "Shot Put (Men)": 19
           },
+          "totalPoints": 104,
           "performances": [
             {
               "event": "400 Meters (Men)",
@@ -1174,7 +1174,7 @@ function ResultTable(){
         }
       ],
       "duel": false
-    };
+    }
 
     const numTeams=meet.teams.length;
     console.log(numTeams);
@@ -1208,7 +1208,7 @@ function ResultTable(){
     }
 
     const events=["100 Meters","200 Meters","400 Meters","800 Meters","1500 Meters",
-    "5000 Meters","10000 Meters", "100 Hurdles", "110 Hurdles","400 Hurdles", "3000 Steeplechase",
+    "5000 Meters","10000 Meters", "High Hurdles", "400 Hurdles", "3000 Steeplechase",
     "4 x 100 Relay","4 x 400 Relay","High Jump"  ,"Pole Vault","Long Jump","Triple Jump","Shot Put",
     "Discus","Hammer","Javelin" ];
 
@@ -1229,6 +1229,7 @@ function ResultTable(){
                     <th className =" border border-slate-500">{t.teamName}
                       <p className="text-slate-400">{t.womens ? " (women)":" (men)" }</p>
                     </th>
+                    <td>{t.totalPoints}</td>
                    
                     {/* <td>{getMenOrWomen(t.scoreMap,"400 Meters")}</td> */}
                     {eventResultFactory(t)}
