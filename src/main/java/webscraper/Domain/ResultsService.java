@@ -78,11 +78,11 @@ public class ResultsService {
         for(Team t: meet.getTeams()){
             addPoints(meet.isDuel(), t.getPerformances());
             for(Performance p: t.getPerformances()){
-                Integer score;
+                Integer score = p.getPoints();
+                t.setTotalPoints(t.getTotalPoints()+score);
+
                 if(t.getScoreMap().get(p.getEvent())!=null){
-                    score= (int)(t.getScoreMap().get(p.getEvent())) + p.getPoints();
-                }else {
-                    score = p.getPoints();
+                    score += (int)(t.getScoreMap().get(p.getEvent())) ;
                 }
                 t.getScoreMap().put(p.getEvent(),score);
             }

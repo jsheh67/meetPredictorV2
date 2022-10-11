@@ -5,22 +5,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Team {
     private String teamName;
     private Boolean womens;
-    private int totalPoints=0;
 
 
     private List<Performance> Performances = new ArrayList<>();
 
     private HashMap scoreMap= new HashMap<>();
 
-    public int getTotalPoints() {
+//    private Integer totalPoints = scoreMap.values().stream().mapToInt(i->(int)i).sum();
+    private Integer totalPoints =0;
+
+    public Integer getTotalPoints() {
         return totalPoints;
     }
 
-    public void setTotalPoints(int totalPoints) {
+    public void setTotalPoints(Integer totalPoints) {
         this.totalPoints = totalPoints;
     }
 
