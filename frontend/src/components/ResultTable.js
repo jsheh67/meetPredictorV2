@@ -1195,7 +1195,7 @@ function ResultTable(){
       }
         return(gender.map(t=>{
             return (
-                <th className="bg-blue-100 border text-left px-8 py-4"> {t.teamName}{t.mOrF ? " (women)":" (men)" }</th>
+                <th className="bg-blue-100 sm:text-xs border text-left px-8 py-4"> {t.teamName}{t.mOrF ? " (women)":" (men)" }</th>
             )
         }))
     }
@@ -1221,14 +1221,14 @@ function ResultTable(){
     }
 
     const events=["100 Meters","200 Meters","400 Meters","800 Meters","1500 Meters",
-    "5000 Meters","10000 Meters", "High Hurdles", "400 Hurdles", "3000 Steeplechase",
+    "5000 Meters","10000 Meters", "High Hurdles", "400 Hurdles", "3000 Steeple",
     "4 x 100 Relay","4 x 400 Relay","High Jump"  ,"Pole Vault","Long Jump","Triple Jump","Shot Put",
     "Discus","Hammer","Javelin" ];
 
     const eventResultFactory=(team)=>{
       return events.map(e=>{
         return(
-          <td className=" p-2 text-center" >{getMenOrWomen(team.scoreMap, e)}</td>
+          <td className="sm:text-xs py-2 px-1 text-center" >{getMenOrWomen(team.scoreMap, e)}</td>
         )
       })
     }
@@ -1236,21 +1236,51 @@ function ResultTable(){
     const eventHeaderFactory=()=>{
       return events.map(e=>{
         return(
-          <th className="p-2 text-sm" >{e}</th>
+          <th className=" sm:text-xs py-2 px-1 text-sm" >{e}</th>
         )
       })
     }
+
+    const getMedals=(t)=>{
+    if(t===meet.mensTeams[0] || t===meet.womensTeams[0]){
+      return(
+        <td className ="sm:text-xs text-center py-2 px-1">
+          <div className="bg-yellow-500 font-bold rounded-full px-1 py-2 w-8">
+            {t.totalPoints}
+          </div>
+        </td>
+      )
+    }else if(t===meet.mensTeams[1]|| t===meet.womensTeams[1]){
+      return(
+        <td className ="sm:text-xs  text-center py-2 px-1">
+          <div className="bg-slate-400 font-bold rounded-full px-1 py-2 w-8">
+            {t.totalPoints}
+          </div>
+        </td>
+      )
+    }else if(t===meet.mensTeams[2] || t===meet.womensTeams[2]){
+      return(
+        <td className ="sm:text-xs  text-center py-2 px-1">
+          <div className="bg-amber-700 font-bold rounded-full px-1 py-2 w-8">
+            {t.totalPoints}
+          </div>
+        </td>
+      )
+    }
+  }
 
     
 
     const teamResults=()=>{
         return(meet.mensTeams.map(t=>{
+         
             return(
                 <tr className="even:bg-slate-200 odd:bg-white">
-                    <th className ="text-sm p-2">{t.teamName}
-                      <p className="text-sm font-light text-slate-600">{t.womens ? " (women)":" (men)" }</p>
+                    <th className ="sm:text-xs text-sm py-2 px-1">{t.teamName}
+                      <p className="sm:text-xs text-sm font-light text-slate-600">{t.womens ? " (women)":" (men)" }</p>
                     </th>
-                    <td className =" p-2">{t.totalPoints}</td>
+                    {getMedals(t)}
+                    {/* <td className ="sm:text-xs py-2 px-1">{t.totalPoints}</td> */}
                    
                     {/* <td>{getMenOrWomen(t.scoreMap,"400 Meters")}</td> */}
                     {eventResultFactory(t)}
@@ -1267,10 +1297,11 @@ function ResultTable(){
       return(meet.womensTeams.map(t=>{
           return(
               <tr className="even:bg-slate-200 odd:bg-white">
-                  <th className ="text-sm p-2">{t.teamName}
-                    <p className="text-sm font-light text-slate-600">{t.womens ? " (women)":" (men)" }</p>
+                  <th className ="sm:text-xs text-sm py-2 px-1">{t.teamName}
+                    <p className="sm:text-xs text-sm font-light text-slate-600">{t.womens ? " (women)":" (men)" }</p>
                   </th>
-                  <td className =" p-2">{t.totalPoints}</td>
+                  {getMedals(t)}
+                  {/* <td className ="sm:text-xs py-2 px-1">{t.totalPoints}</td> */}
                  
                   {/* <td>{getMenOrWomen(t.scoreMap,"400 Meters")}</td> */}
                   {eventResultFactory(t)}
@@ -1295,22 +1326,30 @@ function ResultTable(){
     // }
 
     return(
+      <div className="flex">
         <table className="shadow-lg bg-white border border-slate-500 table-auto rounded-sm">
           <tbody>
 
               <tr className="bg-slate-700 text-slate-200">
-                <th className="text-sm">Teams</th>
-                <th className="text-sm">Total Score</th>
+                <th className="text-sm sm:text-xs">Teams</th>
+                <th className="text-sm sm:text-xs">Total Score</th>
                 {eventHeaderFactory()}
               </tr>
             
+              <tr className="bg-slate-400 text-slate-900">
+                <th colSpan="22">Men</th>
+              </tr>
               {teamResults()}
+              <tr className="bg-slate-400 text-slate-900">
+                <th colSpan="22">Women</th>
+              </tr>
              
               {teamWResults()}
              
           </tbody>
            
         </table>
+      </div>
     )
 
 }
