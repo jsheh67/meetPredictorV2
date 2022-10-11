@@ -113,13 +113,7 @@ public class ResultRepository {
 //            String eventName = event.findElement(By.className("font-weight-500")).getText();
             String[] eventTitle = event.getText().split("\n");
             String eventName = eventTitle[0];
-            int endIndex = eventName.indexOf(")");
-            String eventT;
-            if (endIndex != -1) {
-                eventT = eventName.substring(0, endIndex + 1);
-            } else {
-                eventT = eventName;
-            }
+            String eventT = getString(eventName);
             List<WebElement> resultRows = new ArrayList<>();
             resultRows = event.findElements(By.className("allRows"));
             int filterRank=1;
@@ -168,6 +162,21 @@ public class ResultRepository {
             }
         }
         return allResults;
+    }
+
+    private String getString(String eventName) {
+        int endIndex = eventName.indexOf(")");
+        String eventT;
+        if (endIndex != -1) {
+            eventT = eventName.substring(0, endIndex + 1);
+        } else {
+            eventT = eventName;
+        }
+        //converting to High hurdles makes gender diff esier to work with later
+        if(eventT.contains("Hurdles")&& eventT.contains("1")){
+            eventT="High Hurdles";
+        }
+        return eventT;
     }
 
 
