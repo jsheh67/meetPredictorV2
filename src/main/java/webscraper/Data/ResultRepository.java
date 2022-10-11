@@ -186,7 +186,8 @@ public class ResultRepository {
 
     public Meet getMeet(){
         Meet meet = new Meet();
-        List<Team> teams = new ArrayList<>();
+        List<Team> mensTeams = new ArrayList<>();
+        List<Team> womensTeams = new ArrayList<>();
 
         List<WebElement> allEvents = driver.findElements(By.className("col-lg-12"));
         for (WebElement event : allEvents) {
@@ -214,13 +215,25 @@ public class ResultRepository {
                         filterRank++;
                         String teamName = cols.get(3).getText();
                         boolean teamGender = getGender(eventT);
-
-                        Team t = findTeamFromList(teamName, teamGender,teams);
-                        if (t == null) {
-                            t = new Team(teamName, teamGender);
-                            teams.add(t);
+                        Team t;
+                        if(teamGender){
+                            t = findTeamFromList(teamName, teamGender, womensTeams );
+                            if (t == null) {
+                                t = new Team(teamName, teamGender);
+                                womensTeams.add(t);
+                            }
+                            t.getPerformances().add(p);
+                        }else{
+                            t = findTeamFromList(teamName, teamGender, mensTeams );
+                            if (t == null) {
+                                t = new Team(teamName, teamGender);
+                                mensTeams.add(t);
+                            }
+                            t.getPerformances().add(p);
                         }
-                        t.getPerformances().add(p);
+
+
+
 
                     }else{ //in case of relay
                         String teamName = cols.get(1).getText();
@@ -230,19 +243,31 @@ public class ResultRepository {
                         filterRank++;
 
                         boolean teamGender = getGender(eventT);
-                        Team t = findTeamFromList(teamName, teamGender, teams);
-                        if (t == null) {
-                            t = new Team(teamName, teamGender);
-                            teams.add(t);
+                        Team t;
+                        if(teamGender){
+                            t = findTeamFromList(teamName, teamGender, womensTeams );
+                            if (t == null) {
+                                t = new Team(teamName, teamGender);
+                                womensTeams.add(t);
+                            }
+                            t.getPerformances().add(p);
+                        }else{
+                            t = findTeamFromList(teamName, teamGender, mensTeams );
+                            if (t == null) {
+                                t = new Team(teamName, teamGender);
+                                mensTeams.add(t);
+                            }
+                            t.getPerformances().add(p);
                         }
-                        t.getPerformances().add(p);
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
-        meet.setTeams(teams);
+        meet.setMensTeams(mensTeams);
+        meet.setWomensTeams(womensTeams);
         return meet;
     }
 

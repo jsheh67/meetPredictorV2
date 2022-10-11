@@ -67,15 +67,30 @@ public class ResultsService {
 
     public Meet getMeetWPoints(){
       Meet meet = getMeet();
-      for(Team t: meet.getTeams()){
+      for(Team t: meet.getMensTeams()){
           addPoints(meet.isDuel(),t.getPerformances());
       }
+        for(Team t: meet.getWomensTeams()){
+            addPoints(meet.isDuel(),t.getPerformances());
+        }
       return meet;
     }
 
     public Meet getMeetWEventScores(){
         Meet meet =getMeet();
-        for(Team t: meet.getTeams()){
+        for(Team t: meet.getWomensTeams()){
+            addPoints(meet.isDuel(), t.getPerformances());
+            for(Performance p: t.getPerformances()){
+                Integer score = p.getPoints();
+                t.setTotalPoints(t.getTotalPoints()+score);
+
+                if(t.getScoreMap().get(p.getEvent())!=null){
+                    score += (int)(t.getScoreMap().get(p.getEvent())) ;
+                }
+                t.getScoreMap().put(p.getEvent(),score);
+            }
+        }
+        for(Team t: meet.getMensTeams()){
             addPoints(meet.isDuel(), t.getPerformances());
             for(Performance p: t.getPerformances()){
                 Integer score = p.getPoints();
