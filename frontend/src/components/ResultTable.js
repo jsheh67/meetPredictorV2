@@ -3,7 +3,161 @@ function ResultTable(){
     const teams=["oxy","cms","pomona"];
 
     const meet ={
-      "teams": [
+      "mensTeams": [
+        {
+          "teamName": "Caltech",
+          "womens": false,
+          "scoreMap": {
+            "400 Meters (Men)": 11,
+            "10,000 Meters (Men)": 10,
+            "800 Meters (Men)": 10,
+            "400 Hurdles (Men)": 24,
+            "Discus (Men)": 10,
+            "Hammer (Men)": 12,
+            "4 x 400 Relay (Men)": 8,
+            "Shot Put (Men)": 19
+          },
+          "totalPoints": 104,
+          "performances": [
+            {
+              "event": "400 Meters (Men)",
+              "result": "51.48",
+              "rank": 3,
+              "points": 6,
+              "athlete": {
+                "name": "Saha, Josh",
+                "year": "FR-1"
+              }
+            },
+            {
+              "event": "400 Meters (Men)",
+              "result": "51.50",
+              "rank": 4,
+              "points": 5,
+              "athlete": {
+                "name": "Jiang, Roy",
+                "year": "FR-1"
+              }
+            },
+            {
+              "event": "800 Meters (Men)",
+              "result": "1:57.87",
+              "rank": 1,
+              "points": 10,
+              "athlete": {
+                "name": "Rodriguez, Kellen",
+                "year": "SR-4"
+              }
+            },
+            {
+              "event": "10,000 Meters (Men)",
+              "result": "32:17.11",
+              "rank": 1,
+              "points": 10,
+              "athlete": {
+                "name": "Litvin, Joey",
+                "year": "SO-2"
+              }
+            },
+            {
+              "event": "400 Hurdles (Men)",
+              "result": "56.30",
+              "rank": 1,
+              "points": 10,
+              "athlete": {
+                "name": "Shepard, Cason",
+                "year": "FR-1"
+              }
+            },
+            {
+              "event": "400 Hurdles (Men)",
+              "result": "57.67",
+              "rank": 2,
+              "points": 8,
+              "athlete": {
+                "name": "Seebeck, Jerome",
+                "year": "SR-4"
+              }
+            },
+            {
+              "event": "400 Hurdles (Men)",
+              "result": "58.67",
+              "rank": 3,
+              "points": 6,
+              "athlete": {
+                "name": "Saha, Josh",
+                "year": "FR-1"
+              }
+            },
+            {
+              "event": "4 x 400 Relay (Men)",
+              "result": "3:30.57",
+              "rank": 2,
+              "points": 8,
+              "athletes": "Jiang, Seebeck, Saha, Shepard"
+            },
+            {
+              "event": "Shot Put (Men)",
+              "result": "12.35m",
+              "rank": 2,
+              "points": 8,
+              "athlete": {
+                "name": "Amelinez-Robles, Daniel",
+                "year": "FR-1"
+              }
+            },
+            {
+              "event": "Shot Put (Men)",
+              "result": "10.58m",
+              "rank": 3,
+              "points": 6,
+              "athlete": {
+                "name": "Johnson, Ezra",
+                "year": "SO-2"
+              }
+            },
+            {
+              "event": "Shot Put (Men)",
+              "result": "10.58m",
+              "rank": 4,
+              "points": 5,
+              "athlete": {
+                "name": "Lanzendorf, Lucas",
+                "year": "FR-1"
+              }
+            },
+            {
+              "event": "Discus (Men)",
+              "result": "41.48m",
+              "rank": 1,
+              "points": 10,
+              "athlete": {
+                "name": "Amelinez-Robles, Daniel",
+                "year": "FR-1"
+              }
+            },
+            {
+              "event": "Hammer (Men)",
+              "result": "39.96m",
+              "rank": 2,
+              "points": 8,
+              "athlete": {
+                "name": "Amelinez-Robles, Daniel",
+                "year": "FR-1"
+              }
+            },
+            {
+              "event": "Hammer (Men)",
+              "result": "24.72m",
+              "rank": 5,
+              "points": 4,
+              "athlete": {
+                "name": "Lanzendorf, Lucas",
+                "year": "FR-1"
+              }
+            }
+          ]
+        },
         {
           "teamName": "Chapman",
           "womens": false,
@@ -393,7 +547,9 @@ function ResultTable(){
               }
             }
           ]
-        },
+        }
+      ],
+      "womensTeams": [
         {
           "teamName": "Chapman",
           "womens": true,
@@ -1017,170 +1173,27 @@ function ResultTable(){
               }
             }
           ]
-        },
-        {
-          "teamName": "Caltech",
-          "womens": false,
-          "scoreMap": {
-            "400 Meters (Men)": 11,
-            "10,000 Meters (Men)": 10,
-            "800 Meters (Men)": 10,
-            "400 Hurdles (Men)": 24,
-            "Discus (Men)": 10,
-            "Hammer (Men)": 12,
-            "4 x 400 Relay (Men)": 8,
-            "Shot Put (Men)": 19
-          },
-          "totalPoints": 104,
-          "performances": [
-            {
-              "event": "400 Meters (Men)",
-              "result": "51.48",
-              "rank": 3,
-              "points": 6,
-              "athlete": {
-                "name": "Saha, Josh",
-                "year": "FR-1"
-              }
-            },
-            {
-              "event": "400 Meters (Men)",
-              "result": "51.50",
-              "rank": 4,
-              "points": 5,
-              "athlete": {
-                "name": "Jiang, Roy",
-                "year": "FR-1"
-              }
-            },
-            {
-              "event": "800 Meters (Men)",
-              "result": "1:57.87",
-              "rank": 1,
-              "points": 10,
-              "athlete": {
-                "name": "Rodriguez, Kellen",
-                "year": "SR-4"
-              }
-            },
-            {
-              "event": "10,000 Meters (Men)",
-              "result": "32:17.11",
-              "rank": 1,
-              "points": 10,
-              "athlete": {
-                "name": "Litvin, Joey",
-                "year": "SO-2"
-              }
-            },
-            {
-              "event": "400 Hurdles (Men)",
-              "result": "56.30",
-              "rank": 1,
-              "points": 10,
-              "athlete": {
-                "name": "Shepard, Cason",
-                "year": "FR-1"
-              }
-            },
-            {
-              "event": "400 Hurdles (Men)",
-              "result": "57.67",
-              "rank": 2,
-              "points": 8,
-              "athlete": {
-                "name": "Seebeck, Jerome",
-                "year": "SR-4"
-              }
-            },
-            {
-              "event": "400 Hurdles (Men)",
-              "result": "58.67",
-              "rank": 3,
-              "points": 6,
-              "athlete": {
-                "name": "Saha, Josh",
-                "year": "FR-1"
-              }
-            },
-            {
-              "event": "4 x 400 Relay (Men)",
-              "result": "3:30.57",
-              "rank": 2,
-              "points": 8,
-              "athletes": "Jiang, Seebeck, Saha, Shepard"
-            },
-            {
-              "event": "Shot Put (Men)",
-              "result": "12.35m",
-              "rank": 2,
-              "points": 8,
-              "athlete": {
-                "name": "Amelinez-Robles, Daniel",
-                "year": "FR-1"
-              }
-            },
-            {
-              "event": "Shot Put (Men)",
-              "result": "10.58m",
-              "rank": 3,
-              "points": 6,
-              "athlete": {
-                "name": "Johnson, Ezra",
-                "year": "SO-2"
-              }
-            },
-            {
-              "event": "Shot Put (Men)",
-              "result": "10.58m",
-              "rank": 4,
-              "points": 5,
-              "athlete": {
-                "name": "Lanzendorf, Lucas",
-                "year": "FR-1"
-              }
-            },
-            {
-              "event": "Discus (Men)",
-              "result": "41.48m",
-              "rank": 1,
-              "points": 10,
-              "athlete": {
-                "name": "Amelinez-Robles, Daniel",
-                "year": "FR-1"
-              }
-            },
-            {
-              "event": "Hammer (Men)",
-              "result": "39.96m",
-              "rank": 2,
-              "points": 8,
-              "athlete": {
-                "name": "Amelinez-Robles, Daniel",
-                "year": "FR-1"
-              }
-            },
-            {
-              "event": "Hammer (Men)",
-              "result": "24.72m",
-              "rank": 5,
-              "points": 4,
-              "athlete": {
-                "name": "Lanzendorf, Lucas",
-                "year": "FR-1"
-              }
-            }
-          ]
         }
       ],
       "duel": false
     }
 
-    const numTeams=meet.teams.length;
-    console.log(numTeams);
+    meet.mensTeams.sort((a,b)=>
+      parseInt(b.totalPoints)-  parseInt(a.totalPoints)
+    );
+
+    meet.womensTeams.sort((a,b)=>
+      parseInt(b.totalPoints)-  parseInt(a.totalPoints)
+    );
     
-    const teamHeaderFactory=()=>{
-        return(meet.teams.map(t=>{
+    const teamHeaderFactory=(mens)=>{
+      const gender=null;
+      if(mens=="mens"){
+        gender=meet.mensTeams
+      }else{
+        gender=meet.womensTeams
+      }
+        return(gender.map(t=>{
             return (
                 <th className="bg-blue-100 border text-left px-8 py-4"> {t.teamName}{t.mOrF ? " (women)":" (men)" }</th>
             )
@@ -1230,8 +1243,8 @@ function ResultTable(){
 
     
 
-    const teamResults=(num)=>{
-        return(meet.teams.map(t=>{
+    const teamResults=()=>{
+        return(meet.mensTeams.map(t=>{
             return(
                 <tr className="even:bg-slate-200 odd:bg-white">
                     <th className ="text-sm p-2">{t.teamName}
@@ -1248,6 +1261,26 @@ function ResultTable(){
         }))
     }
 
+  
+
+    const teamWResults=()=>{
+      return(meet.womensTeams.map(t=>{
+          return(
+              <tr className="even:bg-slate-200 odd:bg-white">
+                  <th className ="text-sm p-2">{t.teamName}
+                    <p className="text-sm font-light text-slate-600">{t.womens ? " (women)":" (men)" }</p>
+                  </th>
+                  <td className =" p-2">{t.totalPoints}</td>
+                 
+                  {/* <td>{getMenOrWomen(t.scoreMap,"400 Meters")}</td> */}
+                  {eventResultFactory(t)}
+               
+                  
+              </tr>
+          )
+      }))
+  }
+
 
     // const hundredPerformances=()=>{
     //     return(meet.teams.map(t=>{
@@ -1262,7 +1295,7 @@ function ResultTable(){
     // }
 
     return(
-        <table className="shadow-lg bg-white border border-slate-500 table-auto">
+        <table className="shadow-lg bg-white border border-slate-500 table-auto rounded-sm">
           <tbody>
 
               <tr className="bg-slate-700 text-slate-200">
@@ -1273,19 +1306,10 @@ function ResultTable(){
             
               {teamResults()}
              
+              {teamWResults()}
+             
           </tbody>
-            {/* <tr>
-                <th className="bg-blue-100 border text-left px-8 py-4">Event</th>
-                {teamHeaderFactory()}
-            </tr>
-            <tr>
-                <td rowSpan="3">100m</td>
-                {hundredPerformances()}
-            </tr>
-            
-            <tr>
-                <td rowSpan="3">200m</td>
-            </tr> */}
+           
         </table>
     )
 
