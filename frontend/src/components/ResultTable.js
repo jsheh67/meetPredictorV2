@@ -1195,7 +1195,7 @@ function ResultTable(){
       }
         return(gender.map(t=>{
             return (
-                <th className="bg-blue-100 sm:text-xs border text-left px-8 py-4"> {t.teamName}{t.mOrF ? " (women)":" (men)" }</th>
+                <th className="bg-blue-100 text-xs border text-left px-8 py-4"> {t.teamName}{t.mOrF ? " (women)":" (men)" }</th>
             )
         }))
     }
@@ -1228,7 +1228,7 @@ function ResultTable(){
     const eventResultFactory=(team)=>{
       return events.map(e=>{
         return(
-          <td className="sm:text-xs py-2 px-1 text-center" >{getMenOrWomen(team.scoreMap, e)}</td>
+          <td className="text-xs py-2 px-1 text-center tracking-tight" >{getMenOrWomen(team.scoreMap, e)}</td>
         )
       })
     }
@@ -1252,9 +1252,54 @@ function ResultTable(){
       if(team.scoreMap[event+" (Men)"]==null && team.scoreMap[event+" (Women)"]==null){
         return "-";
       }else if(team.scoreMap[event+" (Men)"]!=null){
-        return (team.scoreMap[event+" (Men)"])+"\n"+filteredPsMen[0].rank+" "+filteredPsMen[0].result;
+
+        let result= (team.scoreMap[event+" (Men)"])+"~";
+
+        for(let i=0; i<filteredPsMen.length; i++){
+          if(i<=8){
+            if(filteredPsMen[i].rank==1){
+              filteredPsMen[i].rank='🥇';
+            }
+            else if(filteredPsMen[i].rank==2){
+              filteredPsMen[i].rank='🥈';
+            }
+            else if(filteredPsMen[i].rank==3){
+              filteredPsMen[i].rank='🥉';
+            }else{
+              filteredPsMen[i].rank=filteredPsMen[i].rank+".";
+            }
+            result+=filteredPsMen[i].rank+" "+filteredPsMen[i].result+"~";
+          }else{
+            break;
+          }
+        }
+
+        return result;
+
       }else if(team.scoreMap[event+" (Women)"]!=null) {
-        return (team.scoreMap[event+" (Women)"])+filteredPsWomen[0].result+filteredPsWomen[0].rank;
+
+        let result= (team.scoreMap[event+" (Women)"])+"~";
+
+        for(let i=0; i<filteredPsWomen.length; i++){
+          if(i<=8){
+            if(filteredPsWomen[i].rank==1){
+              filteredPsWomen[i].rank='🥇';
+            }
+            else if(filteredPsMen[i].rank==2){
+              filteredPsWomen[i].rank='🥈';
+            }
+            else if(filteredPsMen[i].rank==3){
+              filteredPsWomen[i].rank='🥉';
+            }else{
+              filteredPsWomen[i].rank=filteredPsWomen[i].rank+".";
+            }
+            result+=filteredPsWomen[i].rank+" "+filteredPsWomen[i].result+"~";
+          }else{
+            break;
+          }
+        }
+
+        return result;
       }else{
         return "-"
       }
@@ -1262,8 +1307,19 @@ function ResultTable(){
 
     const eventResultFactoryDetailed=(team)=>{
       return events.map(e=>{
+        let results= getMenOrWomenDetailed(team, e);
+        let resultArray= results.split("~");
         return(
-          <td className="sm:text-xs py-2 px-1 text-center" >{getMenOrWomenDetailed(team, e)}</td>
+          <td className="text-xs py-2 px-1 text-left justify-start truncate" >
+            <div className="flex flex-col tracking-tight">
+              <ul>
+                <li>{resultArray[1]}</li>
+                <li>{resultArray[2]}</li>
+                <li>{resultArray[3]}</li>
+              </ul>
+
+            </div>
+          </td>
         )
       })
     }
@@ -1271,7 +1327,7 @@ function ResultTable(){
     const eventHeaderFactory=()=>{
       return events.map(e=>{
         return(
-          <th className=" sm:text-xs py-2 px-1 text-sm" >{e}</th>
+          <th className="text-xs py-2 px-1 tracking-tight" >{e}</th>
         )
       })
     }
@@ -1279,24 +1335,24 @@ function ResultTable(){
     const getMedals=(t)=>{
     if(t===meet.mensTeams[0] || t===meet.womensTeams[0]){
       return(
-        <td className ="sm:text-xs text-center py-2 px-1">
-          <div className="bg-yellow-500 font-bold rounded-full px-1 py-2 w-8">
+        <td className ="text-xs tracking-tight even:bg-slate-700 odd:bg-slate-600 text-center py-2 px-1">
+          <div className="bg-gradient-to-r from-yellow-500 via-yellow-300 to-yellow-500 font-bold rounded-full px-1 py-2 w-8">
             {t.totalPoints}
           </div>
         </td>
       )
     }else if(t===meet.mensTeams[1]|| t===meet.womensTeams[1]){
       return(
-        <td className ="sm:text-xs  text-center py-2 px-1">
-          <div className="bg-slate-400 font-bold rounded-full px-1 py-2 w-8">
+        <td className ="text-xs tracking-tight text-center even:bg-slate-700 odd:bg-slate-600  py-2 px-1">
+          <div className="bg-gradient-to-r from-slate-400 via-slate-300 to-slate-400 font-bold rounded-full px-1 py-2 w-8">
             {t.totalPoints}
           </div>
         </td>
       )
     }else if(t===meet.mensTeams[2] || t===meet.womensTeams[2]){
       return(
-        <td className ="sm:text-xs  text-center py-2 px-1">
-          <div className="bg-amber-700 font-bold rounded-full px-1 py-2 w-8">
+        <td className ="text-xs tracking-tight text-center even:bg-slate-700  py-2 px-1">
+          <div className="bg-gradient-to-r from-amber-600 via-amber-300 to-amber-600 font-bold rounded-full px-1 py-2 w-8">
             {t.totalPoints}
           </div>
         </td>
@@ -1308,9 +1364,9 @@ function ResultTable(){
     return(meet.mensTeams.map(t=>{
      
         return(
-            <tr className="even:bg-slate-200 odd:bg-white">
-                <th className ="sm:text-xs text-sm py-2 px-1">{t.teamName}
-                  <p className="sm:text-xs text-sm font-light text-slate-600">{t.womens ? " (women)":" (men)" }</p>
+            <tr className="even:bg-slate-200 odd:bg-white align-top">
+                <th className ="text-xs  tracking-tight bg-slate-700 text-white py-2 px-1">{t.teamName}
+                  <p className="text-xs tracking-tight  font-light text-slate-400">{t.womens ? " (women)":" (men)" }</p>
                 </th>
                 {getMedals(t)}
                 {/* <td className ="sm:text-xs py-2 px-1">{t.totalPoints}</td> */}
@@ -1331,8 +1387,8 @@ function ResultTable(){
          
             return(
                 <tr className="even:bg-slate-200 odd:bg-white">
-                    <th className ="sm:text-xs text-sm py-2 px-1">{t.teamName}
-                      <p className="sm:text-xs text-sm font-light text-slate-600">{t.womens ? " (women)":" (men)" }</p>
+                    <th className =" text-sm tracking-tight py-2 px-1">{t.teamName}
+                      <p className=" text-sm tracking-tight font-light text-slate-600">{t.womens ? " (women)":" (men)" }</p>
                     </th>
                     {getMedals(t)}
                     {/* <td className ="sm:text-xs py-2 px-1">{t.totalPoints}</td> */}
@@ -1352,8 +1408,8 @@ function ResultTable(){
       return(meet.womensTeams.map(t=>{
           return(
               <tr className="even:bg-slate-200 odd:bg-white">
-                  <th className ="sm:text-xs text-sm py-2 px-1">{t.teamName}
-                    <p className="sm:text-xs text-sm font-light text-slate-600">{t.womens ? " (women)":" (men)" }</p>
+                  <th className =" text-sm tracking-tight bg-slate-700 text-white  py-2 px-1">{t.teamName}
+                    <p className=" text-sm tracking-tight font-light text-slate-400">{t.womens ? " (women)":" (men)" }</p>
                   </th>
                   {getMedals(t)}
                   {/* <td className ="sm:text-xs py-2 px-1">{t.totalPoints}</td> */}
@@ -1386,8 +1442,8 @@ function ResultTable(){
           <tbody>
 
               <tr className="bg-slate-700 text-slate-200">
-                <th className="text-sm sm:text-xs">Teams</th>
-                <th className="text-sm sm:text-xs">Total Score</th>
+                <th className="text-sm">Teams</th>
+                <th className="text-sm ">Total Score</th>
                 {eventHeaderFactory()}
               </tr>
             
@@ -1408,8 +1464,8 @@ function ResultTable(){
           <tbody>
 
               <tr className="bg-slate-700 text-slate-200">
-                <th className="text-sm sm:text-xs">Teams</th>
-                <th className="text-sm sm:text-xs">Total Score</th>
+                <th className="text-sm tracking-tight ">Teams</th>
+                <th className="text-sm tracking-tight ">Total Score</th>
                 {eventHeaderFactory()}
               </tr>
             
