@@ -1310,8 +1310,8 @@ function ResultTable(){
         let results= getMenOrWomenDetailed(team, e);
         let resultArray= results.split("~");
         return(
-          <td className="text-xs py-2 px-1 text-left justify-start truncate" >
-            <div className="flex flex-col tracking-tight">
+          <td className="text-xs py-2 px-0.5 text-left justify-start truncate" >
+            <div className="flex flex-col ">
               <ul>
                 <li>{resultArray[1]}</li>
                 <li>{resultArray[2]}</li>
@@ -1327,7 +1327,7 @@ function ResultTable(){
     const eventHeaderFactory=()=>{
       return events.map(e=>{
         return(
-          <th className="text-xs py-2 px-1 tracking-tight" >{e}</th>
+          <th className="text-xs py-2 px-0 tracking-tighter" >{e}</th>
         )
       })
     }
@@ -1335,7 +1335,7 @@ function ResultTable(){
     const getMedals=(t)=>{
     if(t===meet.mensTeams[0] || t===meet.womensTeams[0]){
       return(
-        <td className ="text-xs tracking-tight even:bg-slate-700 odd:bg-slate-600 text-center py-2 px-1">
+        <td className ="max-w-min flex-none text-xs even:bg-slate-700 odd:bg-slate-600 text-center py-2 px-1">
           <div className="bg-gradient-to-r from-yellow-500 via-yellow-300 to-yellow-500 font-bold rounded-full px-1 py-2 w-8">
             {t.totalPoints}
           </div>
@@ -1343,7 +1343,7 @@ function ResultTable(){
       )
     }else if(t===meet.mensTeams[1]|| t===meet.womensTeams[1]){
       return(
-        <td className ="text-xs tracking-tight text-center even:bg-slate-700 odd:bg-slate-600  py-2 px-1">
+        <td className ="max-w-min flex-none text-xs text-center even:bg-slate-700 odd:bg-slate-600  py-2 px-1">
           <div className="bg-gradient-to-r from-slate-400 via-slate-300 to-slate-400 font-bold rounded-full px-1 py-2 w-8">
             {t.totalPoints}
           </div>
@@ -1351,7 +1351,7 @@ function ResultTable(){
       )
     }else if(t===meet.mensTeams[2] || t===meet.womensTeams[2]){
       return(
-        <td className ="text-xs tracking-tight text-center even:bg-slate-700  py-2 px-1">
+        <td className ="max-w-min flex-none text-xs text-center even:bg-slate-700  py-2 px-1">
           <div className="bg-gradient-to-r from-amber-600 via-amber-300 to-amber-600 font-bold rounded-full px-1 py-2 w-8">
             {t.totalPoints}
           </div>
@@ -1365,8 +1365,8 @@ function ResultTable(){
      
         return(
             <tr className="even:bg-slate-200 odd:bg-white align-top">
-                <th className ="text-xs  tracking-tight bg-slate-700 text-white py-2 px-1">{t.teamName}
-                  <p className="text-xs tracking-tight  font-light text-slate-400">{t.womens ? " (women)":" (men)" }</p>
+                <th className ="text-xs  bg-slate-700 text-white py-2 px-0">{t.teamName}
+                  <p className="text-xs font-light text-slate-400">{t.womens ? " (women)":" (men)" }</p>
                 </th>
                 {getMedals(t)}
                 {/* <td className ="sm:text-xs py-2 px-1">{t.totalPoints}</td> */}
@@ -1387,8 +1387,8 @@ function ResultTable(){
          
             return(
                 <tr className="even:bg-slate-200 odd:bg-white">
-                    <th className =" text-sm tracking-tight py-2 px-1">{t.teamName}
-                      <p className=" text-sm tracking-tight font-light text-slate-600">{t.womens ? " (women)":" (men)" }</p>
+                    <th className =" text-sm bg-slate-700 text-white py-2 px-1">{t.teamName}
+                      <p className=" text-sm  font-light bg-slate-700 text-slate-400">{t.womens ? " (women)":" (men)" }</p>
                     </th>
                     {getMedals(t)}
                     {/* <td className ="sm:text-xs py-2 px-1">{t.totalPoints}</td> */}
@@ -1408,8 +1408,8 @@ function ResultTable(){
       return(meet.womensTeams.map(t=>{
           return(
               <tr className="even:bg-slate-200 odd:bg-white">
-                  <th className =" text-sm tracking-tight bg-slate-700 text-white  py-2 px-1">{t.teamName}
-                    <p className=" text-sm tracking-tight font-light text-slate-400">{t.womens ? " (women)":" (men)" }</p>
+                  <th className =" text-sm  bg-slate-700 text-white  py-2 px-1">{t.teamName}
+                    <p className=" text-sm  font-light text-slate-400">{t.womens ? " (women)":" (men)" }</p>
                   </th>
                   {getMedals(t)}
                   {/* <td className ="sm:text-xs py-2 px-1">{t.totalPoints}</td> */}
@@ -1443,15 +1443,15 @@ function ResultTable(){
 
               <tr className="bg-slate-700 text-slate-200">
                 <th className="text-sm">Teams</th>
-                <th className="text-sm ">Total Score</th>
+                <th className="text-sm ">Total Points</th>
                 {eventHeaderFactory()}
               </tr>
             
-              <tr className="bg-slate-400 text-slate-900">
+              <tr className="bg-slate-600 text-slate-200">
                 <th colSpan="22">Men</th>
               </tr>
               {teamResults()}
-              <tr className="bg-slate-400 text-slate-900">
+              <tr className="bg-slate-600 text-slate-200">
                 <th colSpan="22">Women</th>
               </tr>
              
@@ -1460,24 +1460,26 @@ function ResultTable(){
           </tbody>  
         </table>
 
-        <table className="shadow-lg bg-white border border-slate-500 table-auto rounded-sm mb-4">
-          <tbody>
+        <table className="shadow-lg bg-white border border-slate-500 table-fixed rounded-sm mb-4">
+          <tbody className="text-sm tracking-tighter">
 
               <tr className="bg-slate-700 text-slate-200">
-                <th className="text-sm tracking-tight ">Teams</th>
-                <th className="text-sm tracking-tight ">Total Score</th>
+                <th >Teams</th>
+                <th className="w-8">Total Points</th>
                 {eventHeaderFactory()}
               </tr>
             
-              <tr className="bg-slate-400 text-slate-900">
-                <th colSpan="22">Men</th>
+              <tr className="bg-slate-600 text-slate-200">
+                <th className= "bg-slate-700" colSpan="2"></th>
+                <th colSpan="20">Men</th>
               </tr>
               {teamResultsDetailed()}
-              <tr className="bg-slate-400 text-slate-900">
+              <tr className="bg-slate-600 text-slate-200">
+                <th className= "bg-slate-700" colSpan="2"></th>
                 <th colSpan="22">Women</th>
-              </tr>
+              </tr> 
              
-              {teamWResults()}
+                {teamWResults()}
              
           </tbody>  
         </table>
