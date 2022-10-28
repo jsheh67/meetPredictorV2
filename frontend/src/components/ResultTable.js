@@ -1311,13 +1311,18 @@ function ResultTable(){
         let resultArray= results.split("~");
         return(
           <td className="text-xs py-2 px-0.5 text-left justify-start truncate" >
+            <div className="group flex flex-row relative">
+              <h5 className=" text-opacity-5 text-xl font-bold text-slate-500 absolute top-0 left-3 right-0
+              group-hover:text-opacity-100 p-0">{getMenOrWomen(team.scoreMap, e)}</h5>
             <div className="flex flex-col ">
-              <ul>
-                <li>{resultArray[1]}</li>
-                <li>{resultArray[2]}</li>
-                <li>{resultArray[3]}</li>
+             
+              <ul className="group-hover:opacity-10">
+                <li className="z-50">{resultArray[1]}</li>
+                <li className="z-50">{resultArray[2]}</li>
+                <li className="z-50">{resultArray[3]}</li>
               </ul>
 
+            </div>
             </div>
           </td>
         )
@@ -1474,6 +1479,7 @@ function ResultTable(){
                 <th colSpan="20">Men</th>
               </tr>
               {teamResultsDetailed()}
+             
               <tr className="bg-slate-600 text-slate-200">
                 <th className= "bg-slate-700" colSpan="2"></th>
                 <th colSpan="22">Women</th>
