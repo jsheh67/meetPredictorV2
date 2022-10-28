@@ -276,6 +276,9 @@ public class ResultRepository {
             eventT ="High Hurdles (Women)";
         }else if(eventT.contains("110 Hurdles")){
             eventT ="High Hurdles (Men)";
+        }else if(eventT.contains("Steeplechase ")){
+            String[] split = eventT.split("\s");
+            eventT= "Steeple "+split[2];
         }
         return eventT;
     }
