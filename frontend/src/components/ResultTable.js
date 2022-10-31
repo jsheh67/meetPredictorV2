@@ -1,4 +1,4 @@
-function ResultTable(){
+function ResultTable({meetResults}){
 
     const teams=["oxy","cms","pomona"];
 
@@ -1221,7 +1221,7 @@ function ResultTable(){
     }
 
     const events=["100 Meters","200 Meters","400 Meters","800 Meters","1500 Meters",
-    "5000 Meters","10,000 Meters", "High Hurdles", "400 Hurdles", "3000 Steeplechase",
+    "5000 Meters","10,000 Meters", "High Hurdles", "400 Hurdles", "3000 Steeple",
     "4 x 100 Relay","4 x 400 Relay","High Jump"  ,"Pole Vault","Long Jump","Triple Jump","Shot Put",
     "Discus","Hammer","Javelin" ];
 
@@ -1246,8 +1246,8 @@ function ResultTable(){
     const getMenOrWomenDetailed=(team, event)=>{
       let filteredPsMen=filterPerformancesByEvent(team.performances, event+" (Men)");
       let filteredPsWomen=filterPerformancesByEvent(team.performances, event+" (Women)");
-      console.log(filteredPsMen);
-      console.log(filteredPsWomen);
+      //console.log(filteredPsMen);
+      //console.log(filteredPsWomen);
 
       if(team.scoreMap[event+" (Men)"]==null && team.scoreMap[event+" (Women)"]==null){
         return "-";
