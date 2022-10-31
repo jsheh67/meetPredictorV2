@@ -2,7 +2,8 @@ function ResultTable({meetResults}){
 
     const teams=["oxy","cms","pomona"];
 
-    const meet ={
+    //const meet=meetResults;
+    let meet ={
       "mensTeams": [
         {
           "teamName": "Caltech",
@@ -1178,6 +1179,15 @@ function ResultTable({meetResults}){
       "duel": false
     }
 
+    console.log("meet Results");
+    console.log(meetResults);
+
+    if(meetResults.mensTeams!=null || meetResults.mensTeams!==undefined){
+      meet=meetResults;
+    }
+
+    
+  // if(meetResults!==undefined){
     meet.mensTeams.sort((a,b)=>
       parseInt(b.totalPoints)-  parseInt(a.totalPoints)
     );
@@ -1185,6 +1195,7 @@ function ResultTable({meetResults}){
     meet.womensTeams.sort((a,b)=>
       parseInt(b.totalPoints)-  parseInt(a.totalPoints)
     );
+  
     
     const teamHeaderFactory=(mens)=>{
       const gender=null;
@@ -1256,19 +1267,20 @@ function ResultTable({meetResults}){
         let result= (team.scoreMap[event+" (Men)"])+"~";
 
         for(let i=0; i<filteredPsMen.length; i++){
+          let rankDisplay;
           if(i<=8){
             if(filteredPsMen[i].rank==1){
-              filteredPsMen[i].rank='🥇';
+              rankDisplay='🥇';
             }
             else if(filteredPsMen[i].rank==2){
-              filteredPsMen[i].rank='🥈';
+              rankDisplay='🥈';
             }
             else if(filteredPsMen[i].rank==3){
-              filteredPsMen[i].rank='🥉';
+              rankDisplay='🥉';
             }else{
-              filteredPsMen[i].rank=filteredPsMen[i].rank+".";
+              rankDisplay=filteredPsMen[i].rank +".";
             }
-            result+=filteredPsMen[i].rank+" "+filteredPsMen[i].result+"~";
+            result+=rankDisplay+" "+filteredPsMen[i].result+"~";
           }else{
             break;
           }
@@ -1311,7 +1323,7 @@ function ResultTable({meetResults}){
         let resultArray= results.split("~");
         return(
           <td className="text-xs py-2 px-0.5 text-left justify-start truncate" >
-            <div className="group flex flex-row relative">
+            <div className="group flex flex-row relative  ">
               <h5 className=" text-opacity-5 text-xl font-bold text-slate-500 absolute top-0 left-3 right-0
               group-hover:text-opacity-100 p-0">{getMenOrWomen(team.scoreMap, e)}</h5>
             <div className="flex flex-col ">
@@ -1361,6 +1373,14 @@ function ResultTable({meetResults}){
             {t.totalPoints}
           </div>
         </td>
+      )
+    }else{
+      return(
+      <td className ="max-w-min flex-none text-xs text-center even:bg-slate-700  py-2 px-1">
+        <div className="font-bold text-white">
+            {t.totalPoints}
+        </div>
+      </td>
       )
     }
   }
