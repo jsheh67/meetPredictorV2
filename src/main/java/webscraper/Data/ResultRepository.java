@@ -191,11 +191,13 @@ public class ResultRepository {
 
         List<WebElement> allEvents = driver.findElements(By.className("col-lg-12"));
         for (WebElement event : allEvents) {
+
 //            String eventName = event.findElement(By.className("font-weight-500")).getText();
             String[] eventTitle = event.getText().split("\n");
             String eventName = eventTitle[0];
 
             String eventT = getString(eventName);
+           // System.out.println(eventT);
 
             eventT = getEventT(eventT);
 

@@ -40,7 +40,7 @@ public class ResultController {
     @GetMapping("/meetResults/{conf}")
     public Meet getMeetResultsWFilter(@PathVariable String conf){
         startAndSearch(conf);
-        Meet m = service.getMeetWPoints();
+        Meet m = service.getMeetWEventScores();
         service.quit();
         return m;
     }
